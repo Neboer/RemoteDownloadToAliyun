@@ -16,6 +16,6 @@ fi
 
 mkdir "$1"
 cd "$1"
-aria2c "$2"
+aria2c "$2" --seed-time=0
 cd ..
 aliyunpan upload "$1"
