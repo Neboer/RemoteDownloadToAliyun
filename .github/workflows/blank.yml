@@ -1,0 +1,41 @@
+name: Test if the script works
+on: push
+
+jobs:
+  build:
+    name: setup_and_run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 512
+          swap-size-mb: 1024
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+
+      - name: install aria2/python
+        run: sudo apt install -y aria2 python3
+        
+      - name: install aliyun cli
+        run: sudo python -m pip install git+https://github.com/wxy1343/aliyunpan.git
+        
+      - name: prepare aliyun drive
+        env:
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+        shell: bash
+        run: |
+          mkdir -p ~/.config && echo "refresh_token: '$REFRESH_TOKEN'"  >  ~/.config/aliyunpan.yaml
+      
+      - name: checkout the script
+        uses: actions/checkout@v2
+        with:
+          path: script
+      
+      - name: test the script in base folder
+        env:
+          NewFolderName: {{ secrets.NewFolderName }}
+          TargetURL: {{ secrets.TargetURL }}
+        run:
+          bash script/upload.sh "$NewFolderName" "$TargetURL"
