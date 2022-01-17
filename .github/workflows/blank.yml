@@ -35,7 +35,7 @@ jobs:
       
       - name: test the script in base folder
         env:
-          NewFolderName: {{ secrets.NewFolderName }}
-          TargetURL: {{ secrets.TargetURL }}
+          NEWFOLDERNAME: ${{ secrets.NEWFOLDERNAME }}
+          TARGETURL: ${{ secrets.TARGETURL }}
         run:
-          bash script/upload.sh "$NewFolderName" "$TargetURL"
+          bash script/upload.sh "$NEWFOLDERNAME" "$TARGETURL"
