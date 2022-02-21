@@ -14,3 +14,6 @@
  ./upload.sh <NewFolderName> <TargetURL>
 ```
 脚本将会创建一个以NewFolderName为名字的文件夹，然后下载TargetURL的链接，最后把整个文件夹使用aliyunpan upload上传到阿里云盘。
+
+## 参考
+https://www.neboer.site/blog/61e4f69ec4dd93075056338d
