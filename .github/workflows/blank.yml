@@ -14,28 +14,17 @@ jobs:
       #    remove-dotnet: 'true'
       #    remove-android: 'true'
       #    remove-haskell: 'true'
-
-      - name: install aria2/python
-        run: sudo apt install -y aria2 python3
-        
-      - name: install aliyun cli
-        run: sudo python -m pip install git+https://github.com/wxy1343/aliyunpan.git
-        
-      - name: prepare aliyun drive
+      - name: prepare
+        run: ./prepare.sh "$TARGETURL"
         env:
-          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
-        shell: bash
-        run: |
-          mkdir -p ~/.config && echo "refresh_token: '$REFRESH_TOKEN'"  >  ~/.config/aliyunpan.yaml
-      
-      - name: checkout the script
-        uses: actions/checkout@v2
-        with:
-          path: script
-      
-      - name: test the script in base folder
-        env:
-          NEWFOLDERNAME: ${{ secrets.NEWFOLDERNAME }}
           TARGETURL: ${{ secrets.TARGETURL }}
-        run:
-          bash script/upload.sh "$NEWFOLDERNAME" "$TARGETURL"
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+      - name: download
+        run: ./download.sh "$NEWFOLDERNAME" "$TARGETURL"
+        env:
+          TARGETURL: ${{ secrets.TARGETURL }}
+          NEWFOLDERNAME: ${{ secrets.NEWFOLDERNAME }}
+      - name: upload
+        run: ./upload.sh "$NEWFOLDERNAME"
+        env:
+          NEWFOLDERNAME: ${{ secrets.NEWFOLDERNAME }}3
