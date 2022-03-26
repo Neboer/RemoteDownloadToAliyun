@@ -8,3 +8,4 @@ eval "$2"
 else
 aria2c "$2" --seed-time=0
 fi
+cd ..
