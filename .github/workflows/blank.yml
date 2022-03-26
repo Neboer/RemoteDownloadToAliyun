@@ -31,4 +31,4 @@ jobs:
       - name: upload
         run: bash ./.Downloader/upload.sh "$NEWFOLDERNAME"
         env:
-          NEWFOLDERNAME: ${{ secrets.NEWFOLDERNAME }}3
+          NEWFOLDERNAME: ${{ secrets.NEWFOLDERNAME }}
