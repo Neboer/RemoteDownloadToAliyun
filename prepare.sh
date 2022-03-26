@@ -9,9 +9,9 @@ sudo apt-get update
 sudo apt install -y python3
 sudo python -m pip install git+https://github.com/wxy1343/aliyunpan.git
 mkdir -p ~/.config && echo "refresh_token: '$REFRESH_TOKEN'"  >  ~/.config/aliyunpan.yaml
-if [[ "$1" == youtube-dl* ]]
+if [[ "$1" == yt-dlp* ]]
 then
-sudo python -m pip install youtube-dl
+sudo python3 -m pip install yt-dlp
 else
 sudo apt install -y aria2c
 fi
