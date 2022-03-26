@@ -2,7 +2,7 @@
 # usage: ./download.sh <dirname> <url or command>
 mkdir "$1"
 cd "$1"
-if [[ "$2" == youtube-dl* ]]
+if [[ "$2" == yt-dlp* ]]
 then
 eval "$2"
 else
