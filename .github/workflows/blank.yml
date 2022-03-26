@@ -19,16 +19,16 @@ jobs:
         with:
           path: .Downloader
       - name: prepare
-        run: ./.Downloader/prepare.sh "$TARGETURL"
+        run: bash ./.Downloader/prepare.sh "$TARGETURL"
         env:
           TARGETURL: ${{ secrets.TARGETURL }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
       - name: download
-        run: ./.Downloader/download.sh "$NEWFOLDERNAME" "$TARGETURL"
+        run: bash ./.Downloader/download.sh "$NEWFOLDERNAME" "$TARGETURL"
         env:
           TARGETURL: ${{ secrets.TARGETURL }}
           NEWFOLDERNAME: ${{ secrets.NEWFOLDERNAME }}
       - name: upload
-        run: ./.Downloader/upload.sh "$NEWFOLDERNAME"
+        run: bash ./.Downloader/upload.sh "$NEWFOLDERNAME"
         env:
           NEWFOLDERNAME: ${{ secrets.NEWFOLDERNAME }}3
