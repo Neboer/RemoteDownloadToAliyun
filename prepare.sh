@@ -13,5 +13,5 @@ if [[ "$1" == yt-dlp* ]]
 then
 sudo python3 -m pip install yt-dlp
 else
-sudo apt install -y aria2c
+sudo apt install -y aria2
 fi
