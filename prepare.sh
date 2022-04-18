@@ -16,5 +16,5 @@ elif [[ "$1" == git* ]]
 then
 sudo apt install -y git
 else
-sudo apt install -y aria2c
+sudo apt install -y aria2
 fi
