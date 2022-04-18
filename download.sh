@@ -8,7 +8,9 @@ eval "$2"
 elif [[ "$2" == git* ]]
 then
 eval "$2"
-tar -czf $(ls |head -1).tar.gz *
+target=$(ls |head -1)
+tar -czf $target.tar.gz *
+rm -rf $target
 else
 aria2c "$2" --seed-time=0
 fi
