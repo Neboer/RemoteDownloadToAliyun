@@ -12,6 +12,9 @@ mkdir -p ~/.config && echo "refresh_token: '$REFRESH_TOKEN'"  >  ~/.config/aliyu
 if [[ "$1" == yt-dlp* ]]
 then
 sudo python3 -m pip install yt-dlp
+elif [[ "$1" == git* ]]
+then
+sudo apt install -y git
 else
 sudo apt install -y aria2c
 fi
